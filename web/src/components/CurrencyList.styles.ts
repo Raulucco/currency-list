@@ -3,7 +3,6 @@ import { currencyListBackground, currencyRowBackground, primary, rowBorder, seco
 
 export const FavoriteCurrencySection = styled.section`
   padding: 1.2rem;
-
 `;
 
 export const CurrencyListSection = styled.section`
@@ -39,7 +38,6 @@ export const Row = styled(BaseRow)`
   color: ${secondary};
 `;
 
-
 export const Cell = styled.div`
   display: flex;
   text-align: center;
@@ -47,7 +45,6 @@ export const Cell = styled.div`
   justify-content: center;
   font-size: .8rem;
 `;
-
 
 export const MoveCell = styled(Cell)`
   color: ${props => props.color};

@@ -1,9 +1,8 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useEffect } from 'react';
 import AllCurrencies from './components/AllCurrencies';
-import { AddCurrencyToFavorites, Currency, CurrencyRow, RemoveCurrencyFromFavorites } from './components/CurrencyList';
 import FavoriteCurrencies from './components/FavoriteCurrencies';
 import { MainHeader } from './App.styles';
-import useFavoriteCurrencies from './hooks/useFavoriteCurrencies';
+import { useStore } from './hooks/useStore';
 
 const data = [
   {
@@ -45,23 +44,14 @@ const data = [
 ];
 
 export default function App() {
-  const {favorites, addToFavorites, removeFromFavorites } = useFavoriteCurrencies();
-  const [currencies, setCurrencies] = useState(data);
+  const currencies = useStore(({ getCurrencies }) => getCurrencies());
+  const fetchCurrencies = useStore(({ fetchCurrencies }) => fetchCurrencies);
 
-  const favoriteCurrencies = useMemo(() => {
-    return Array.from(favorites.values());
-  }, [favorites]);
+  const favoriteCurrencies = useStore(({ getFavorites }) => getFavorites());
 
   useEffect(() => {
-   const [, days = 0] = location.search.match(/days=(\d+)/) ?? [];
-    if (days > 0) {
-      setCurrencies((old) => {
-        return old.map(({ cnb, move, ...rest}) => ({
-          ...rest,
-          cnb: Number((((cnb * 1000) + ((cnb * 1000) * (move * Number(days)))) / 1000).toFixed(3)),
-          move,
-        }));
-      });
+    if (!currencies.length) {
+      fetchCurrencies();
     }
   }, []);
 
@@ -70,20 +60,8 @@ export default function App() {
       <header>
         <MainHeader>Kurzovní lístek</MainHeader>
       </header>
-      <FavoriteCurrencies currencies={favoriteCurrencies}>
-      {favoriteCurrencies.map((currency: Currency) => (
-          <CurrencyRow key={currency.shortName} {...currency}>
-            <RemoveCurrencyFromFavorites action={removeFromFavorites.bind(null, currency)} />
-          </CurrencyRow>
-        ))}
-      </FavoriteCurrencies>
-      <AllCurrencies currencies={data}>
-        {currencies.map((currency) => (
-          <CurrencyRow key={currency.shortName} {...currency}>
-            <AddCurrencyToFavorites action={favorites.get(currency.shortName) ? undefined : addToFavorites.bind(null, currency)} />
-          </CurrencyRow>
-        ))}
-      </AllCurrencies>
+      <FavoriteCurrencies currencies={favoriteCurrencies} />
+      <AllCurrencies currencies={currencies} />
     </section>
   );
 }

@@ -1,6 +1,7 @@
-import React, { ReactNode, useMemo } from 'react';
+import React from 'react';
 import { Button } from '../App.styles';
 import { negativeCourse, positiveCourse } from '../colors';
+import { useStore } from '../hooks/useStore';
 import { Cell, Grid, HeaderRow, MoveCell, Row } from "./CurrencyList.styles";
 
 export type Currency = {
@@ -13,17 +14,40 @@ export type Currency = {
   cnb: number;
 };
 
+type CurrencyListType = 'STANDARD_CURRENCIES' | 'FAVORITE_CURRENCIES';
+
 type CurrencyListProps = {
   currencies: Currency[];
-  children: ReactNode;
+  type: CurrencyListType;
 };
 
 type CurrencyRowProps = {
-  children: ReactNode;
+  type: CurrencyListType,
 } & Currency;
 
 type CurrencyAction = {
-  action?: () => void;
+  shortName: string;
+}
+
+export function AddCurrencyToFavorites({ shortName }: CurrencyAction) {
+  const addFavoriteCurrency = useStore(({ addFavoriteCurrency }) => addFavoriteCurrency);
+  const favorites = useStore(({ favorites }) => favorites);
+
+  if (favorites.get(shortName)) {
+    return null;
+  } 
+
+  return (
+    <Button onClick={() => addFavoriteCurrency(shortName)}>Oblíbená</Button>
+  );
+}
+
+export function RemoveCurrencyFromFavorites({ shortName }: CurrencyAction) {
+  const removeFavoriteCurrency = useStore(({ removeFavoriteCurrency }) => removeFavoriteCurrency);
+
+  return (
+    <Button onClick={() => removeFavoriteCurrency(shortName)}>Zrusit</Button>
+  );
 }
 
 export function CurrencyRow({
@@ -34,42 +58,30 @@ export function CurrencyRow({
   buy,
   sell,
   cnb,
-  children,
+  type,
 }: CurrencyRowProps) {
+
   return (
     <Row>
-      <Cell className="name">
+      <Cell data-testid="name">
         {shortName} {name}
       </Cell>
-      <Cell className="country">{country}</Cell>
-      <Cell className="buy">{buy}</Cell>
-      <Cell className="sell">{sell}</Cell>
-      <Cell className="cnb">{cnb}</Cell>
-      <MoveCell color={move > 0 ? positiveCourse : negativeCourse }>{move}</MoveCell>
-      <Cell className="action">
-        {children}
+      <Cell data-testid="country">{country}</Cell>
+      <Cell data-testid="buy">{buy}</Cell>
+      <Cell data-testid="sell">{sell}</Cell>
+      <Cell data-testid="cnb">{cnb}</Cell>
+      <MoveCell color={move > 0 ? positiveCourse : negativeCourse } data-testid="move">{move}</MoveCell>
+      <Cell data-testid="action">
+
+        { type === 'FAVORITE_CURRENCIES' && <RemoveCurrencyFromFavorites shortName={shortName} /> }
+        { type === 'STANDARD_CURRENCIES' && <AddCurrencyToFavorites shortName={shortName} /> }
+
       </Cell>
     </Row>
   );
 }
 
-export function AddCurrencyToFavorites({ action }: CurrencyAction) {
-  if (!action) {
-    return null;
-  } 
-
-  return (
-    <Button onClick={action}>Oblíbená</Button>
-  );
-}
-
-export function RemoveCurrencyFromFavorites({ action }: CurrencyAction) {
-  return (
-    <Button onClick={action}>Zrusit</Button>
-  );
-}
-
-export default function CurrencyList({ currencies, children }: CurrencyListProps) {
+export default function CurrencyList({ currencies, type }: CurrencyListProps) {
 
   return (
     <Grid>
@@ -82,7 +94,9 @@ export default function CurrencyList({ currencies, children }: CurrencyListProps
         <Cell>Změna / 1 den</Cell>
         <div></div>
       </HeaderRow>
-      {children}
+      {currencies.map((currency) => (
+        <CurrencyRow key={currency.shortName} {...currency} type={type} />
+      ))}
     </Grid>
   );
 }

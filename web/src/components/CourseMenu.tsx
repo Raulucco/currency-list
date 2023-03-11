@@ -1,10 +1,11 @@
 import React, { useMemo } from "react";
 import { primary, white } from "../colors";
-import useDailyCourse from "../hooks/useDailyCourse";
+import { useStore } from "../hooks/useStore";
 import { CourseButton, CourseButtonsRow } from "./CourseMenu.styles";
 
 export default function CourseMenu() {
-  const { days, setCourseDays } = useDailyCourse();
+  const days = useStore(({ days }) => days);
+  const setCourseDays = useStore(({ setDays }) => setDays);
   const styles = useMemo(() => ({
       display: 'inline-block',
       marginLeft: 'auto',
