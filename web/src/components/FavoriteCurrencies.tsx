@@ -15,7 +15,7 @@ export default function FavoriteCurrencies({
   }
 
   return (
-    <FavoriteCurrencySection>
+    <FavoriteCurrencySection data-testid="favorite-currencies">
       <header>
         <SecondaryHeader>Vaše oblíbené</SecondaryHeader>
       </header>

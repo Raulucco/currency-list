@@ -65,7 +65,7 @@ export function CurrencyRow({
   type,
 }: CurrencyRowProps) {
   return (
-    <Row>
+    <Row data-testid="currency-row">
       <Cell data-testid="name">
         {shortName} {name}
       </Cell>
@@ -93,7 +93,7 @@ export function CurrencyRow({
 
 export default function CurrencyList({ currencies, type }: CurrencyListProps) {
   return (
-    <Grid>
+    <Grid data-testid="currency-list">
       <HeaderRow>
         <Cell>Měna</Cell>
         <Cell>Země</Cell>

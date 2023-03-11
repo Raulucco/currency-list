@@ -10,7 +10,7 @@ type AllCurrenciesProps = {
 
 export default function AllCurrencies({ currencies }: AllCurrenciesProps) {
   return (
-    <CurrencyListSection>
+    <CurrencyListSection data-testid="all-currencies">
       <header>
         <SecondaryHeader>Seznam všech kurzů</SecondaryHeader>
       </header>

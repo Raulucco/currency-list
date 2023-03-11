@@ -17,7 +17,7 @@ export default function App() {
   }, []);
 
   return (
-    <section>
+    <section data-testid="app">
       <header>
         <MainHeader>Kurzovní lístek</MainHeader>
       </header>

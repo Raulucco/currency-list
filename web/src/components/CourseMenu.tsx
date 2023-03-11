@@ -17,7 +17,7 @@ export default function CourseMenu() {
   );
 
   return (
-    <div style={styles}>
+    <div style={styles} data-testid="course-buttons">
       <CourseButtonsRow>
         <CourseButton
           backgroundColor={days === 0 ? primary : white}
