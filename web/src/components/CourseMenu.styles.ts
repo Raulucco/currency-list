@@ -12,9 +12,9 @@ export const CourseButtonsRow = styled.div`
   margin: 0 auto;
 `;
 
-export const CourseButton = styled.button<{backgroundColor: string}>`
-  padding: .8em;
-  color: ${props => props.color};
-  background-color: ${props => props.backgroundColor};
+export const CourseButton = styled.button<{ backgroundColor: string }>`
+  padding: 0.8em;
+  color: ${(props) => props.color};
+  background-color: ${(props) => props.backgroundColor};
   border: none;
 `;

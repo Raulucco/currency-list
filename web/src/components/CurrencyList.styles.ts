@@ -1,5 +1,11 @@
-import styled from 'styled-components';
-import { currencyListBackground, currencyRowBackground, primary, rowBorder, secondary } from '../colors';
+import styled from "styled-components";
+import {
+  currencyListBackground,
+  currencyRowBackground,
+  primary,
+  rowBorder,
+  secondary,
+} from "../colors";
 
 export const FavoriteCurrencySection = styled.section`
   padding: 1.2rem;
@@ -15,21 +21,21 @@ export const CurrencyListSection = styled.section`
 export const Grid = styled.div`
   display: flex;
   flex-flow: column;
-  gap: .3rem;
+  gap: 0.3rem;
   margin: 24px 0;
 `;
 
 const BaseRow = styled.div`
-margin: 0 50px;
-display: grid;
-grid-template-columns: repeat(6, 1fr) minmax(80px, 100px);
-padding: .6rem 1.2rem;
+  margin: 0 50px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr) minmax(80px, 100px);
+  padding: 0.6rem 1.2rem;
 `;
 
 export const HeaderRow = styled(BaseRow)`
   color: ${primary};
   font-weight: 600;
-  font-size: .8rem
+  font-size: 0.8rem;
 `;
 
 export const Row = styled(BaseRow)`
@@ -43,9 +49,9 @@ export const Cell = styled.div`
   text-align: center;
   align-items: center;
   justify-content: center;
-  font-size: .8rem;
+  font-size: 0.8rem;
 `;
 
 export const MoveCell = styled(Cell)`
-  color: ${props => props.color};
+  color: ${(props) => props.color};
 `;

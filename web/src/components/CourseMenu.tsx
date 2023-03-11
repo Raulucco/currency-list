@@ -6,12 +6,15 @@ import { CourseButton, CourseButtonsRow } from "./CourseMenu.styles";
 export default function CourseMenu() {
   const days = useStore(({ days }) => days);
   const setCourseDays = useStore(({ setDays }) => setDays);
-  const styles = useMemo(() => ({
-      display: 'inline-block',
-      marginLeft: 'auto',
-      alignSelf: 'center',
-      marginRight: 'auto',
-  }), []);
+  const styles = useMemo(
+    () => ({
+      display: "inline-block",
+      marginLeft: "auto",
+      alignSelf: "center",
+      marginRight: "auto",
+    }),
+    []
+  );
 
   return (
     <div style={styles}>

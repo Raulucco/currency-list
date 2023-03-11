@@ -1,13 +1,15 @@
-import React from 'react';
-import { SecondaryHeader } from '../App.styles';
-import CurrencyList, { Currency } from './CurrencyList';
-import { FavoriteCurrencySection } from './CurrencyList.styles';
+import React from "react";
+import { SecondaryHeader } from "../App.styles";
+import CurrencyList, { Currency } from "./CurrencyList";
+import { FavoriteCurrencySection } from "./CurrencyList.styles";
 
 type FavoriteCurrenciesProps = {
   currencies: Currency[];
 };
 
-export default function FavoriteCurrencies({ currencies }: FavoriteCurrenciesProps) {
+export default function FavoriteCurrencies({
+  currencies,
+}: FavoriteCurrenciesProps) {
   if (!currencies.length) {
     return null;
   }

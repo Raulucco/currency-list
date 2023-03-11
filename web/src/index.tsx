@@ -1,8 +1,13 @@
-import React from 'react';
-import * as ReactDOM from 'react-dom/client';
-import App from './App';
+import React from "react";
+import * as ReactDOM from "react-dom/client";
+import App from "./App";
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root')!
-);
+const rootNode = document.getElementById("root");
+
+if (!rootNode) {
+  throw new Error("No [id=\"root\"] element was found in the DOM");
+}
+
+const root = ReactDOM.createRoot(rootNode);
 root.render(<App />);
+

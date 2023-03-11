@@ -8,7 +8,7 @@ app.use(cors());
 const { PORT = 3000 } = process.env;
 
 app.get("/api/data.json", (_: Request, res: Response) => {
-    res.json(data);
+  res.json(data);
 });
 
 app.listen(PORT, () => {
