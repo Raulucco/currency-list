@@ -1,17 +1,17 @@
-import React, { useMemo } from "react";
-import { primary, white } from "../colors";
-import { useStore } from "../hooks/useStore";
-import { CourseButton, CourseButtonsRow } from "./CourseMenu.styles";
+import React, { useMemo } from 'react';
+import { primary, white } from '../colors';
+import { useCurrenciesStore } from '../hooks/useCurrenciesStore';
+import { CourseButton, CourseButtonsRow } from './CourseMenu.styles';
 
 export default function CourseMenu() {
-  const days = useStore(({ days }) => days);
-  const setCourseDays = useStore(({ setDays }) => setDays);
+  const days = useCurrenciesStore(({ days }) => days);
+  const setCourseDays = useCurrenciesStore(({ setDays }) => setDays);
   const styles = useMemo(
     () => ({
-      display: "inline-block",
-      marginLeft: "auto",
-      alignSelf: "center",
-      marginRight: "auto",
+      display: 'inline-block',
+      marginLeft: 'auto',
+      alignSelf: 'center',
+      marginRight: 'auto',
     }),
     []
   );

@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import {
   currencyListBackground,
   currencyRowBackground,
   primary,
   rowBorder,
   secondary,
-} from "../colors";
+} from '../colors';
 
 export const FavoriteCurrencySection = styled.section`
   padding: 1.2rem;

@@ -1,28 +1,23 @@
-import React, { useEffect } from "react";
-import AllCurrencies from "./components/AllCurrencies";
-import FavoriteCurrencies from "./components/FavoriteCurrencies";
-import { MainHeader } from "./App.styles";
-import { useStore } from "./hooks/useStore";
+import React from 'react';
+import AllCurrencies from './components/AllCurrencies';
+import FavoriteCurrencies from './components/FavoriteCurrencies';
+import { MainHeader } from './App.styles';
+import { useCurrenciesStore } from './hooks/useCurrenciesStore';
 
 export default function App() {
-  const currencies = useStore(({ getCurrencies }) => getCurrencies());
-  const fetchCurrencies = useStore(({ fetchCurrencies }) => fetchCurrencies);
+  const error = useCurrenciesStore(({ error }) => error);
 
-  const favoriteCurrencies = useStore(({ getFavorites }) => getFavorites());
-
-  useEffect(() => {
-    if (!currencies.length) {
-      fetchCurrencies();
-    }
-  }, []);
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <section data-testid="app">
       <header>
         <MainHeader>Kurzovní lístek</MainHeader>
       </header>
-      <FavoriteCurrencies currencies={favoriteCurrencies} />
-      <AllCurrencies currencies={currencies} />
+      <FavoriteCurrencies />
+      <AllCurrencies />
     </section>
   );
 }

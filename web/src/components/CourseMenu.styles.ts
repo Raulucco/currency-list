@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { primary } from "../colors";
+import styled from 'styled-components';
+import { primary } from '../colors';
 
 export const CourseButtonsRow = styled.div`
   display: flex;

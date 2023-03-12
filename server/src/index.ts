@@ -12,5 +12,6 @@ app.get("/api/data.json", (_: Request, res: Response) => {
 });
 
 app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
   console.log(`server started at http://localhost:${PORT}`);
 });

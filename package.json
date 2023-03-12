@@ -2,14 +2,23 @@
   "name": "currencies-list",
   "version": "0.0.0",
   "description": "list of currencies",
-  "main": "index.js",
+  "workspaces": [
+      "web",
+      "server" 
+  ],  
   "scripts": {
+    "prostinstall": "cd web && pnpm install",
+    "web:install": "cd web && pnpm install",
+    "server:install":  "cd server && pnpm install",
+    "build": "pnpm build:web && pnpm build:server",
+    "build:web": "cd web && pnpm build",
+    "build:server": "cd server && pnpm build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:web": "cd web && pnpm start",
     "start:server": "cd server && pnpm start",
-    "start": "start:web && start:server",
-    "prettier": "prettier \"**/*\" --write --ignore-unknown",
-    "lint": "eslint . --ext .ts",
+    "start": "pnpm start:web && pnpm start:server",
+    "prettify": "prettier \"**/*\" --write --ignore-unknown",
+    "lint": "eslint . --ext .ts,.tsx,.json",
     "lint:fix": "eslint . --ext .ts,.tsx,.json --fix"
   },
   "author": "",
@@ -19,6 +28,8 @@
     "@typescript-eslint/parser": "^5.54.1",
     "eslint": "^8.35.0",
     "eslint-config-prettier": "^8.7.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^2.8.4",
     "typescript": "^4.9.5"
   }

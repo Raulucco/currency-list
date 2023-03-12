@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { primary, secondary } from "./colors";
+import styled from 'styled-components';
+import { primary, secondary } from './colors';
 
 export const MainHeader = styled.h1`
   font-size: 1.8rem;

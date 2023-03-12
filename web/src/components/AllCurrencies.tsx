@@ -1,14 +1,15 @@
-import React from "react";
-import { SecondaryHeader } from "../App.styles";
-import CourseMenu from "./CourseMenu";
-import CurrencyList, { Currency } from "./CurrencyList";
-import { CurrencyListSection } from "./CurrencyList.styles";
+import React, { useEffect, useMemo } from 'react';
+import { SecondaryHeader } from '../App.styles';
+import { useCurrenciesStore } from '../hooks/useCurrenciesStore';
+import CourseMenu from './CourseMenu';
+import CurrencyList from './CurrencyList';
+import { CurrencyListSection } from './CurrencyList.styles';
 
-type AllCurrenciesProps = {
-  currencies: Currency[];
-};
+export default function AllCurrencies() {
+  const days = useCurrenciesStore(({ days }) => days);
+  const getCurrencies = useCurrenciesStore(({ getCurrencies }) => getCurrencies);
+  const currencies = useMemo(() => getCurrencies(days), [days, getCurrencies]);
 
-export default function AllCurrencies({ currencies }: AllCurrenciesProps) {
   return (
     <CurrencyListSection data-testid="all-currencies">
       <header>
