@@ -13,7 +13,7 @@ export default function FavoriteCurrencies() {
   if (!favorites.length) {
     return null;
   }
-  console.log(favorites);
+
   return (
     <FavoriteCurrencySection data-testid="favorite-currencies">
       <header>

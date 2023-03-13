@@ -32,5 +32,9 @@
     "webpack-node-externals": "^3.0.0",
     "webpack-shell-plugin": "^0.5.0",
     "webpack-shell-plugin-next": "^2.3.1"
+  },
+  "engines": {
+    "node": ">=16",
+    "pnpm": ">=6"
   }
 }
