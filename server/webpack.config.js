@@ -28,7 +28,7 @@ module.exports = {
   plugins: [
     new WebpackShellPluginNext({
       onBuildEnd: {
-        scripts: ["pnpm run dev"],
+        scripts: NODE_ENV === "production" ? [] : ["pnpm run dev"],
         blocking: false,
         parallel: true,
       },

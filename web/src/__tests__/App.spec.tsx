@@ -60,7 +60,6 @@ describe('App', () => {
 
   it('loads favorite currency list from localStorage', async () => {
     global.localStorage.setItem(FavoritesStorageKey, JSON.stringify(currencies));
-    // fetchMock.mockRejectOnce();
 
     const { queryByTestId } = render(<App />);
     const element = queryByTestId('favorite-currencies');
